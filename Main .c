@@ -1,4 +1,4 @@
 # include <stdio.h>
 int main(){
-    printf("Still testing git! ");
+    printf("Wow it worked :) Ok I'll stop now :( ");
 }
