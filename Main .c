@@ -1,4 +1,48 @@
 # include <stdio.h>
+# include <conio.h>
+
+int pointsArr[2][50] = {0};
+
+void warmerColder(char player1_name[], char player2_name[]){}
+
+
+
+void ticTacToe(char player1_name[], char player2_name[]){}
+
+
+
+void hangman(char player1_name[], char player2_name[]){}
+
+
+
+void rockPaperScissors(char player1_name[], char player2_name[]){
+
+    int numGames;
+    char player1_move, player2_move;
+
+    printf("\n\n\n\n\n");
+    printf("Welcome to the rock paper scissors game!\n");
+    printf("Enter how many games you want to play: ");
+    scanf("%d", &numGames);
+    for (int i = 0; i < numGames; i++){
+        printf("\n\nGame %d:\n\n", i + 1);
+
+        do {
+            printf("Player 1's turn: \n");
+            printf("Choose rock (r), paper (p), or scissors (s): ");
+            player1_move = _getch();
+            if (player1_move != 'r' && player1_move != 'p' && player1_move != 's'){
+                printf("\nYours entry was invalid, please try again, player 1\n\n");
+            }
+            else {
+                printf("\nPlayer 1's move has been noted!\n");
+            }
+        } while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
+    }
+}
+
+
+
 int main(){
 
     char gamechoice;
@@ -28,26 +72,26 @@ int main(){
 
     } while (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r');
 
-    printf("\t\t\t\tPlayer 1 ... please enter your name: ");
-    scanf("%s", &player1_name);
-    printf("\t\t\t\tPlayer 1's name has been saved as: %s", player1_name);
+    printf("\t\t\t      Player 1 ... please enter your name: ");
+    scanf("%s", player1_name);
+    printf("\t\t\t      Player 1's name has been saved as: %s", player1_name);
     printf("\n\n");
-    printf("\t\t\t\tPlayer 2 ... please enter your name: ");
-    scanf("%s", &player2_name);
-    printf("\t\t\t\tPlayer 2's name has been saved as: %s", player2_name);
+    printf("\t\t\t      Player 2 ... please enter your name: ");
+    scanf("%s", player2_name);
+    printf("\t\t\t      Player 2's name has been saved as: %s", player2_name);
     printf("\n");
 
-    // if (gamechoice == 'h'){
-    //     points = hangman(player1_name, player2_name);
-    // }
-    // else if (gamechoice == 't'){
-    //     points = ticTacToe(player1_name, player2_name);
-    // }
-    // else if (gamechoice == 'w'){
-    //     points = warmerColder(player1_name, player2_name);
-    // }
-    // else if (gamechoice == 'r'){
-    //     points = rockPaperScissors(player1_name, player2_name);
-    // }
+    if (gamechoice == 'h'){
+        hangman(player1_name, player2_name);
+    }
+    else if (gamechoice == 't'){
+        ticTacToe(player1_name, player2_name);
+    }
+    else if (gamechoice == 'w'){
+        warmerColder(player1_name, player2_name);
+    }
+    else if (gamechoice == 'r'){
+        rockPaperScissors(player1_name, player2_name);
+    }
 
 }
