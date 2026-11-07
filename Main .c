@@ -37,77 +37,77 @@ void rockPaperScissors(char player1_name[], char player2_name[]){
     int winner, player1_rock_paper_scissors_points = 0, player2_rock_paper_scissors_points = 0;
 
     printf("\n\n\n");
-    printf("\t\t\t\tWelcome to the rock paper scissors game!\n");
-    printf("\t\t\t\tEnter how many games you want to play: ");
+    printf("\t\t\t\t\033[1;38;5;231mWelcome to the rock paper scissors game!\033[0m\n");
+    printf("\t\t\t\t\033[1;38;5;159mEnter how many games you want to play: \033[0m");
     numGames = _getch() - '0';
 
     do {
 
-        printf("\n\n\t\t\t\tGame %d:\n\n", gamesCount + 1);
+        printf("\n\n\t\t\t\t\033[1;38;5;220mGame %d:\033[0m\n\n", gamesCount + 1);
 
         do {
-            printf("\t\t\t\t%s's turn: \n", player1_name);
-            printf("\t\t\t\tChoose rock (r), paper (p), or scissors (s): ");
+            printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player1_name);
+            printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
             player1_move = _getch();
             if (player1_move != 'r' && player1_move != 'p' && player1_move != 's'){
-                printf("\n\t\t\t\tYour entry was invalid, please try again, %s\n\n", player1_name);
+                printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player1_name);
             }
             else {
-                printf("\n\t\t\t\t%s's move has been noted!\n\n", player1_name);
+                printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n\n", player1_name);
             }
         } while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
 
         do {
-            printf("\t\t\t\t%s's turn: \n", player2_name);
-            printf("\t\t\t\tChoose rock (r), paper (p), or scissors (s): ");
+            printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player2_name);
+            printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
             player2_move = _getch();
             if (player2_move != 'r' && player2_move != 'p' && player2_move != 's'){
-                printf("\n\t\t\t\tYour entry was invalid, please try again, %s\n\n", player2_name);
+                printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player2_name);
             }
             else {
-                printf("\n\t\t\t\t%s's move has been noted!\n", player2_name);
+                printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n", player2_name);
             }
         } while (player2_move != 'r' && player2_move != 'p' && player2_move != 's');
 
         winner = rockPaperScissorsWinChecker(player1_move, player2_move);
 
         if (winner == 0){
-            printf("\n\t\t\t\tBoth %s and %s chose (%c)\n", player1_name, player2_name, player1_move);
-            printf("\t\t\t\tThis makes it a tie! Try again!");
+            printf("\n\t\t\t\t\033[1;38;5;231mBoth %s and %s chose (%c)\033[0m\n", player1_name, player2_name, player1_move);
+            printf("\t\t\t\t\033[1;38;5;231mThis makes it a tie! Try again!\033[0m");
         }
         else if (winner == 1){
-            printf("\n\t\t\t\t%s chose (%c) while %s chose (%c)\n", player1_name, player1_move, player2_name, player2_move);
-            printf("\t\t\t\t%s won this round!", player1_name);
+            printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
+            printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player1_name);
             gamesCount += 1;
             player1_rock_paper_scissors_points += 1;
         }
         else {
-            printf("\n\t\t\t\t%s chose (%c) while %s chose (%c)\n", player1_name, player1_move, player2_name, player2_move);
-            printf("\t\t\t\t%s won this round!", player2_name);
+            printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
+            printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player2_name);
             gamesCount += 1;
             player2_rock_paper_scissors_points += 1;
         }
     
     } while (gamesCount < numGames);
 
-    printf("\n\n\n\t\t\t\t\t   Final Score: \n"
-           "\t\t\t\t\t   %s ==> %d wins\n"
-           "\t\t\t\t\t   %s ==> %d wins\n",
+    printf("\n\n\n\t\t\t\t\t\033[1;38;5;220m    Final Score: \033[0m\n"
+           "\t\t\t\t\t    \033[1;38;5;220m%s ==> %d wins\033[0m\n"
+           "\t\t\t\t\t    \033[1;38;5;220m%s ==> %d wins\033[0m\n",
            player1_name, player1_rock_paper_scissors_points, player2_name, player2_rock_paper_scissors_points);
         
     if (player1_rock_paper_scissors_points == player2_rock_paper_scissors_points){
-        printf("\n\n\t\t\t\tBoth players get 1 point as the final scores are tied");
+        printf("\n\n\t\t\t\t\033[1;38;5;75mBoth players get 1 point as the final scores are tied\033[0m");
     }
     else if (player1_rock_paper_scissors_points > player2_rock_paper_scissors_points){
         char temp_name[20]; 
         strcpy(temp_name, player1_name);
-        printf("\n\n\t\t\t\t%s WINS ROCK PAPER SCISSORS AND EARNS 3 POINTS!\n", strupr(temp_name));
+        printf("\n\n\t\t\t\t\033[1;38;5;220m%s WINS ROCK PAPER SCISSORS AND EARNS 3 POINTS!\033[0m\n", strupr(temp_name));
         //add points to array
     }
     else {
         char temp_name[20]; 
         strcpy(temp_name, player2_name);
-        printf("\n\n\t\t\t\t%s WINS ROCK PAPER SCISSORS AND EARNS 3 POINTS!\n", strupr(temp_name));
+        printf("\n\n\t\t\t\t\033[1;38;5;220m%s WINS ROCK PAPER SCISSORS AND EARNS 3 POINTS!\033[0m\n", strupr(temp_name));
         //add points to array
     }
 }
@@ -119,28 +119,28 @@ int main(){
     char gamechoice = 'z';
 
     do {
-        char gamechoice, menuChoice;
+        char menuChoice;
         char player1_name[20], player2_name[20];
 
         // Keep the terminal window at 106x32 for best viewing experience
         do {    
-            printf("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Welcome to Ammar's Gaming Arcade! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+            printf("\n\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[1;38;5;220m Welcome to Ammar's Gaming Arcade! \033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m\n");
             printf("\n");
-            printf("\t\t\t\t What game would you like to play?\n"
+            printf("\t\t\t\t \033[1;38;5;231mWhat game would you like to play?\033[0m\n"
                 "\n"
-                "\t\t\t\t           Hangman (h)\n"
-                "\t\t\t\t         Tic-Tac-Toe (t)\n"
-                "\t\t\t\t        Warmer Colder (w)\n"
-                "\t\t\t\t     Rock-Paper-Scissors (r)\n"
-                "\t\t\t\t      To exit the game (e)\n\n");
-            printf("\t\t\t\t  Enter your game of choice: ");
+                "\t\t\t\t          \033[1;38;5;159mHangman \033[1;38;5;231m(h)\033[0m\n"
+                "\t\t\t\t         \033[1;38;5;159mTic-Tac-Toe \033[1;38;5;231m(t)\033[0m\n"
+                "\t\t\t\t        \033[1;38;5;159mWarmer Colder \033[1;38;5;231m(w)\033[0m\n"
+                "\t\t\t\t     \033[1;38;5;159mRock-Paper-Scissors \033[1;38;5;231m(r)\033[0m\n"
+                "\t\t\t\t       \033[1;38;5;203mTo exit the game \033[1;38;5;231m(e)\033[0m\n\n");
+            printf("\t\t\t\t  \033[1;38;5;231mEnter your game of choice: \033[0m");
             scanf(" %c", &gamechoice);
             printf("\n");
 
             if (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e'){
-                printf("\t\t\t You have entered an invalid choice, please try again! ");
+                printf("\t\t\t\033[1;38;5;203m You have entered an invalid choice, please try again! \033[0m");
                 printf("\n\n");
-                printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+                printf("\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m");
                 printf("\n\n\n\n");
             }
 
@@ -148,18 +148,18 @@ int main(){
 
         if (gamechoice == 'e'){
 
-            printf("\n\n\t\t\t\t\tGame exited :(\n\n");
+            printf("\n\n\t\t\t\t\t\033[1;38;5;203mGame exited :(\033[0m\n\n");
 
             break;
         }
 
-        printf("\t\t\t      Player 1 ... please enter your name: ");
+        printf("\t\t\t       \033[1;38;5;159mPlayer 1 ... please enter your name: \033[0m");
         scanf("%s", player1_name);
-        printf("\t\t\t      Player 1's name has been saved as: %s", player1_name);
+        printf("\t\t\t       \033[1;38;5;42mPlayer 1's name has been saved as: \033[1;38;5;231m%s\033[0m", player1_name);
         printf("\n\n");
-        printf("\t\t\t      Player 2 ... please enter your name: ");
+        printf("\t\t\t       \033[1;38;5;159mPlayer 2 ... please enter your name: \033[0m");
         scanf("%s", player2_name);
-        printf("\t\t\t      Player 2's name has been saved as: %s", player2_name);
+        printf("\t\t\t       \033[1;38;5;42mPlayer 2's name has been saved as: \033[1;38;5;231m%s\033[0m", player2_name);
         printf("\n");
 
         if (gamechoice == 'h'){
@@ -178,10 +178,14 @@ int main(){
         do {
 
             do {
-                printf("\n\n\t\t\t\tPress (a) to play again\n"
-                    "\t\t\t\tPress (m) to go to the main menu\n"
-                    "\t\t\t\tEnter your choice: ");
+                printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
+                    "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                    "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
                 menuChoice = _getch();
+
+                if (menuChoice != 'a' && menuChoice != 'm'){
+                    printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                }
 
             } while (menuChoice != 'a' && menuChoice != 'm');
 
@@ -190,7 +194,7 @@ int main(){
             }
             else {
 
-                printf("\n\n\t\t\t\tReturning to main menu ...\n\n");
+                printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
 
                 continue;
             }
