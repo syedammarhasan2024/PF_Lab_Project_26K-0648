@@ -4,9 +4,135 @@
 
 int pointsArr[2][50] = {0};
 
-void warmerColder(char player1_name[], char player2_name[]){}
+void warmerColder(char player1_name[], char player2_name[]){
 
+    int actualNum, guessedNum, guesses = 0, prevGuess;
+    char choice1;
+    
+    do {
+        printf("\n\n\n");
+        printf("\t\t\t\t\033[1;38;5;231mWelcome to the warmer-colder game!\033[0m\n");
+        printf("\nFor instructions, press (i)\n"
+            "To start playing, press (p)\n"
+            "Enter your choice: ");
+        choice1 = _getch();
 
+        if (choice1 != 'i' && choice1 != 'p'){
+            printf("Invalid choice, try again!\n");
+        }
+
+    } while (choice1 != 'i' && choice1 != 'p');
+
+    if (choice1 == 'i'){
+        printf("\n\nHow to play:\n"
+               "1.  There are 2 rounds.\n"
+               "2.  Round 1: %s picks a 1-100 number, %s guesses.\n"
+               "3.  If %s guesses within 10 tries, %s wins the round.\n"
+               "4a. After 1st guess: computer says \"warm\" or \"cold\".\n"
+               "4b. \"Warm\" = %s's guess is within 10 of %s's number.\n"
+               "4c. \"Cold\" = %s's guess is >10 away from %s's number.\n"
+               "5a. Next guesses: computer says \"getting warmer\" or \"getting colder\".\n"
+               "5b. \"Getting warmer\" = %s's guess is closer to %s's number than %s's previous.\n"
+               "5c. \"Getting colder\" = %s's guess is further from %s's number than %s's previous.\n"
+               "6.  Roles reverse in round 2.\n"
+               "7.  One succeeds, one fails = successful player wins 3 pts.\n"
+               "8.  Both succeed in different number of turns = fewer turns wins 3 pts.\n"
+               "9.  Both succeed in equal turns = 1 pt each.\n"
+               "10. Both fail = 0 pts.\n",
+               player1_name, player2_name, player2_name, player2_name, player2_name, player1_name, player2_name, player1_name,
+               player2_name, player1_name, player2_name, player1_name, player2_name, player2_name, player1_name, player2_name);
+
+        printf("\nTo start the game press (s): ");
+        int choice2 = _getch();
+        
+    }
+    
+    // I will use AI over here to get a possible double digit, or triple digit input from player 1 without showing it to the screen
+    // This is because _getch() is only for single digit numbers or characters. I need a solution for this.
+    printf("\n\n\n");
+
+    do {
+        printf("%s, please enter a number from 1 to 100: ", player1_name);
+        actualNum = 0;
+        int digitsEntered = 0;
+        char ch;
+        
+        while (1) {
+            ch = _getch();
+            if (ch == '\r' || ch == '\n') {
+                if (digitsEntered > 0) {
+                    for (int i = 0; i < digitsEntered; i++) {
+                        printf("\b \b");
+                    }
+                    break;
+                }
+            } else if (ch == '\b') {
+                if (digitsEntered > 0) {
+                    actualNum /= 10;
+                    digitsEntered--;
+                    printf("\b \b");
+                }
+            } else if (ch >= '0' && ch <= '9' && digitsEntered < 3) {
+                actualNum = (actualNum * 10) + (ch - '0');
+                digitsEntered++;
+                printf("%c", ch);
+            }
+        }
+    
+        if (actualNum > 100 || actualNum < 1){
+            printf("\n\nInvalid number, please try again!\n\n");
+        }
+        else {
+            printf("\nThe number has been noted!\n\n");
+        }
+
+    } while (actualNum > 100 || actualNum < 1);
+    
+    do {
+        printf("%s, guess a number from 1 to 100: ", player2_name);
+        scanf("%d", &guessedNum);
+            
+        if (guessedNum > 100 || guessedNum < 1){
+            printf("\n\nInvalid guess, please try again!\n\n");
+        }
+
+    } while (guessedNum > 100 || guessedNum < 1);
+    guesses += 1;
+
+    if(guessedNum == actualNum){
+        printf("\n\nWow! You got it first try! The number was %d\n", actualNum);
+    }
+    else if (((actualNum - guessedNum) <= 10) || ((guessedNum - actualNum) <= 10)){
+        printf("\n\nWarm!\n\n");
+    }
+    else{
+        printf("\n\nCold!\n\n");
+    }
+
+    prevGuess = guessedNum;
+
+    do {
+        
+        do {
+            
+            printf("%s, guess a number from 1 to 100: ", player2_name);
+            scanf("%d", &guessedNum);
+            
+            if (guessedNum > 100 || guessedNum < 1){
+                printf("\n\nInvalid guess, please try again!\n\n");
+            }
+        
+
+        } while (guessedNum > 100 || guessedNum < 1);
+        guesses += 1;
+
+        if (((actualNum - guessedNum) < (actualNum - prevGuess)) || ((guessedNum - actualNum) < (prevGuess - actualNum))){
+            printf("\n\nGetting warmer!\n\n");
+        }
+        // incomplete
+
+    } while (guesses <= 10 && guessedNum != actualNum);
+}
 
 void ticTacToe(char player1_name[], char player2_name[]){}
 
@@ -55,7 +181,7 @@ void rockPaperScissors(char player1_name[], char player2_name[]){
             else {
                 printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n\n", player1_name);
             }
-        } while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
+        }   while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
 
         do {
             printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player2_name);
@@ -96,7 +222,8 @@ void rockPaperScissors(char player1_name[], char player2_name[]){
            player1_name, player1_rock_paper_scissors_points, player2_name, player2_rock_paper_scissors_points);
         
     if (player1_rock_paper_scissors_points == player2_rock_paper_scissors_points){
-        printf("\n\n\t\t\t\t\033[1;38;5;75mBoth players get 1 point as the final scores are tied\033[0m");
+        printf("\n\n\t\t\t\t\033[1;38;5;75mTHE SCORES ARE TIED, SO BOTH PLAYERS EARN 1 POINT\033[0m");
+        //add points to array
     }
     else if (player1_rock_paper_scissors_points > player2_rock_paper_scissors_points){
         char temp_name[20]; 
@@ -163,43 +290,132 @@ int main(){
         printf("\n");
 
         if (gamechoice == 'h'){
-            hangman(player1_name, player2_name);
-        }
-        else if (gamechoice == 't'){
-            ticTacToe(player1_name, player2_name);
-        }
-        else if (gamechoice == 'w'){
-            warmerColder(player1_name, player2_name);
-        }
-        else if (gamechoice == 'r'){
-            rockPaperScissors(player1_name, player2_name);
-        }
 
-        do {
+            hangman(player1_name, player2_name);
 
             do {
-                printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
-                    "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
-                    "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
-                menuChoice = _getch();
 
-                if (menuChoice != 'a' && menuChoice != 'm'){
-                    printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                do {
+                    printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
+                        "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                        "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
+                    menuChoice = _getch();
+
+                    if (menuChoice != 'a' && menuChoice != 'm'){
+                        printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                    }
+
+                } while (menuChoice != 'a' && menuChoice != 'm');
+
+                if (menuChoice == 'a'){
+                    warmerColder(player1_name, player2_name);
+                }
+                else {
+
+                    printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
+
+                    continue;
                 }
 
-            } while (menuChoice != 'a' && menuChoice != 'm');
+            } while (menuChoice == 'a');
 
-            if (menuChoice == 'a'){
-                rockPaperScissors(player1_name, player2_name);
-            }
-            else {
+        }
 
-                printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
+        else if (gamechoice == 't'){
 
-                continue;
-            }
+            ticTacToe(player1_name, player2_name);
 
-        } while (menuChoice == 'a');
+            do {
+
+                do {
+                    printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
+                        "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                        "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
+                    menuChoice = _getch();
+
+                    if (menuChoice != 'a' && menuChoice != 'm'){
+                        printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                    }
+
+                } while (menuChoice != 'a' && menuChoice != 'm');
+
+                if (menuChoice == 'a'){
+                    warmerColder(player1_name, player2_name);
+                }
+                else {
+
+                    printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
+
+                    continue;
+                }
+
+            } while (menuChoice == 'a');
+
+        }
+
+        else if (gamechoice == 'w'){
+
+            warmerColder(player1_name, player2_name);
+
+            do {
+
+                do {
+                    printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
+                        "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                        "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
+                    menuChoice = _getch();
+
+                    if (menuChoice != 'a' && menuChoice != 'm'){
+                        printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                    }
+
+                } while (menuChoice != 'a' && menuChoice != 'm');
+
+                if (menuChoice == 'a'){
+                    warmerColder(player1_name, player2_name);
+                }
+                else {
+
+                    printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
+
+                    continue;
+                }
+
+            } while (menuChoice == 'a');
+
+        }
+
+        else if (gamechoice == 'r'){
+
+            rockPaperScissors(player1_name, player2_name);
+
+            do {
+
+                do {
+                    printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(a)\033[1;38;5;159m to play again\n"
+                        "\t\t\t\tPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                        "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
+                    menuChoice = _getch();
+
+                    if (menuChoice != 'a' && menuChoice != 'm'){
+                        printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                    }
+
+                } while (menuChoice != 'a' && menuChoice != 'm');
+
+                if (menuChoice == 'a'){
+                    rockPaperScissors(player1_name, player2_name);
+                }
+                else {
+
+                    printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
+
+                    continue;
+                }
+
+            } while (menuChoice == 'a');
+
+        }
 
     } while (gamechoice != 'e');
 }
