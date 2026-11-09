@@ -1,14 +1,17 @@
 # include <stdio.h>
 # include <string.h>
 # include <conio.h>
+# include <stdlib.h>
 
 int pointsArr[2][50] = {0};
 
 void warmerColder(char player1_name[], char player2_name[]){
 
-    int actualNum, guessedNum, guesses = 0, prevGuess;
-    char choice1;
-    
+    int actualNum, guessedNum, guesses, prevGuess, numRounds = 0, roundOverFlag = 0, player1_guesses, player2_guesses;
+    int player1_winFlag = 0, player2_winFlag = 0;
+    int invalidNumberInput, clearInput;
+    char choice1, tempPlayer1_Name[20], tempPlayer2_Name[20], nameSwapVar[20];
+
     do {
         printf("\n\n\n");
         printf("\t\t\t\t\033[1;38;5;231mWelcome to the warmer-colder game!\033[0m\n");
@@ -17,13 +20,13 @@ void warmerColder(char player1_name[], char player2_name[]){
             "Enter your choice: ");
         choice1 = _getch();
 
-        if (choice1 != 'i' && choice1 != 'p'){
+        if (choice1 != 'i' && choice1 != 'I' && choice1 != 'p' && choice1 != 'P'){
             printf("Invalid choice, try again!\n");
         }
 
-    } while (choice1 != 'i' && choice1 != 'p');
+    } while (choice1 != 'i' && choice1 != 'I' && choice1 != 'p' && choice1 != 'P');
 
-    if (choice1 == 'i'){
+    if (choice1 == 'i' || choice1 == 'I'){
         printf("\n\nHow to play:\n"
                "1.  There are 2 rounds.\n"
                "2.  Round 1: %s picks a 1-100 number, %s guesses.\n"
@@ -36,102 +39,231 @@ void warmerColder(char player1_name[], char player2_name[]){
                "5c. \"Getting colder\" = %s's guess is further from %s's number than %s's previous.\n"
                "6.  Roles reverse in round 2.\n"
                "7.  One succeeds, one fails = successful player wins 3 pts.\n"
-               "8.  Both succeed in different number of turns = fewer turns wins 3 pts.\n"
+               "8.  Both succeed in different number of turns = fewer turns wins 1 pts.\n"
                "9.  Both succeed in equal turns = 1 pt each.\n"
                "10. Both fail = 0 pts.\n",
                player1_name, player2_name, player2_name, player2_name, player2_name, player1_name, player2_name, player1_name,
-               player2_name, player1_name, player2_name, player1_name, player2_name, player2_name, player1_name, player2_name);
+               player2_name, player1_name, player2_name, player2_name, player1_name, player2_name);
 
-        printf("\nTo start the game press (s): ");
-        int choice2 = _getch();
-        
+        printf("\nTo start the game press any key: ");
+        _getch();
+
+
     }
-    
+
+    strcpy(tempPlayer1_Name, player1_name);
+    strcpy(tempPlayer2_Name, player2_name);
+
     // I will use AI over here to get a possible double digit, or triple digit input from player 1 without showing it to the screen
     // This is because _getch() is only for single digit numbers or characters. I need a solution for this.
-    printf("\n\n\n");
 
     do {
-        printf("%s, please enter a number from 1 to 100: ", player1_name);
-        actualNum = 0;
-        int digitsEntered = 0;
-        char ch;
-        
-        while (1) {
-            ch = _getch();
-            if (ch == '\r' || ch == '\n') {
-                if (digitsEntered > 0) {
-                    for (int i = 0; i < digitsEntered; i++) {
+        numRounds += 1;
+        guesses = 0;
+
+        if (roundOverFlag == 1){
+            printf("\nRound 2 begins:\n");
+        }
+
+        // AI start
+        do {
+            printf("\n\n\n%s, please enter a number from 1 to 100: ", tempPlayer1_Name);
+            actualNum = 0;
+            int digitsEntered = 0;
+            char ch;
+
+            invalidNumberInput = 0;
+
+            while (1) {
+                ch = _getch();
+                if (ch == '\r' || ch == '\n') {
+                    
+                    if (digitsEntered > 0 || invalidNumberInput == 1) {
+                        for (int i = 0; i < digitsEntered; i++) {
+                            printf("\b \b");
+                        }
+                        break;
+                    }
+                } else if (ch == '\b') {
+                    if (digitsEntered > 0) {
+                        actualNum /= 10;
+                        digitsEntered--;
                         printf("\b \b");
                     }
-                    break;
+                } else if (ch >= '0' && ch <= '9') {
+                    if (digitsEntered < 3) {
+                        actualNum = (actualNum * 10) + (ch - '0');
+                        digitsEntered++;
+                        printf("%c", ch);
+                    }
+                    else {
+                        
+                        invalidNumberInput = 1;
+                    }
                 }
-            } else if (ch == '\b') {
-                if (digitsEntered > 0) {
-                    actualNum /= 10;
-                    digitsEntered--;
-                    printf("\b \b");
+                else {
+                    
+                    invalidNumberInput = 1;
                 }
-            } else if (ch >= '0' && ch <= '9' && digitsEntered < 3) {
-                actualNum = (actualNum * 10) + (ch - '0');
-                digitsEntered++;
-                printf("%c", ch);
             }
-        }
-    
-        if (actualNum > 100 || actualNum < 1){
-            printf("\n\nInvalid number, please try again!\n\n");
-        }
-        else {
-            printf("\nThe number has been noted!\n\n");
-        }
+            // AI end
+            if (invalidNumberInput == 1 || actualNum > 100 || actualNum < 1){
+                printf("\n\nInvalid number, please try again!\n\n");
+            }
+            else {
+                printf("\nThe number has been noted!\n\n");
+            }
 
-    } while (actualNum > 100 || actualNum < 1);
-    
-    do {
-        printf("%s, guess a number from 1 to 100: ", player2_name);
-        scanf("%d", &guessedNum);
-            
-        if (guessedNum > 100 || guessedNum < 1){
-            printf("\n\nInvalid guess, please try again!\n\n");
-        }
+        } while (invalidNumberInput == 1 || actualNum > 100 || actualNum < 1);
 
-    } while (guessedNum > 100 || guessedNum < 1);
-    guesses += 1;
-
-    if(guessedNum == actualNum){
-        printf("\n\nWow! You got it first try! The number was %d\n", actualNum);
-    }
-    else if (((actualNum - guessedNum) <= 10) || ((guessedNum - actualNum) <= 10)){
-        printf("\n\nWarm!\n\n");
-    }
-    else{
-        printf("\n\nCold!\n\n");
-    }
-
-    prevGuess = guessedNum;
-
-    do {
-        
         do {
-            
-            printf("%s, guess a number from 1 to 100: ", player2_name);
-            scanf("%d", &guessedNum);
-            
-            if (guessedNum > 100 || guessedNum < 1){
+            printf("%s, guess a number from 1 to 100: ", tempPlayer2_Name);
+
+            // Used AI to check for letters instead of numbers
+
+            if (scanf("%d", &guessedNum) != 1){
+                while ((clearInput = getchar()) != '\n' && clearInput != EOF){}
+                guessedNum = 0;
+                printf("\n\nInvalid input, please enter a number!\n\n");
+            }
+            else if (guessedNum > 100 || guessedNum < 1){
                 printf("\n\nInvalid guess, please try again!\n\n");
             }
-        
 
         } while (guessedNum > 100 || guessedNum < 1);
         guesses += 1;
 
-        if (((actualNum - guessedNum) < (actualNum - prevGuess)) || ((guessedNum - actualNum) < (prevGuess - actualNum))){
-            printf("\n\nGetting warmer!\n\n");
-        }
-        // incomplete
+        if(guessedNum == actualNum){
+            printf("\n\nWow! You got it first try! The number was %d\n", actualNum);
+            printf("It took you %d turn!\n", guesses);
 
-    } while (guesses <= 10 && guessedNum != actualNum);
+            if (roundOverFlag == 0){
+                player2_guesses = guesses;
+                player2_winFlag = 1;
+            }
+            else {
+                player1_guesses = guesses;
+                player1_winFlag = 1;
+            }
+
+        }
+        else if (abs(actualNum - guessedNum) <= 10){
+            printf("Warm!\n\n");
+        }
+        else{
+            printf("Cold!\n\n");
+        }
+
+        if (guessedNum != actualNum){
+
+            prevGuess = guessedNum;
+
+            do {
+
+                do {
+
+                    if (guesses == 9){
+                        printf("\nIts your last turn! You need to get it right!\n\n");
+                    }
+
+                    printf("%s, guess a number from 1 to 100: ", tempPlayer2_Name);
+
+                    // Again used AI to check if letters input instead of numbers
+                    if (scanf("%d", &guessedNum) != 1){
+                        while ((clearInput = getchar()) != '\n' && clearInput != EOF){}
+                        guessedNum = 0;
+                        printf("\n\nInvalid input, please enter a number!\n\n");
+                    }
+                    else if (guessedNum > 100 || guessedNum < 1){
+                        printf("\n\nInvalid guess, please try again!\n\n");
+                    }
+
+                } while (guessedNum > 100 || guessedNum < 1);
+                guesses += 1;
+
+                if (guessedNum == actualNum){
+                    printf("You got it! The number was %d!\n", actualNum);
+                    printf("It took you %d turns!\n", guesses);
+
+                    if (roundOverFlag == 0){
+                        player2_guesses = guesses;
+                        player2_winFlag = 1;
+                    }
+                    else {
+                        player1_guesses = guesses;
+                        player1_winFlag = 1;
+                    }
+
+
+                }
+                else if (abs(actualNum - guessedNum) <= abs(actualNum - prevGuess)){
+                    printf("Getting warmer!\n\n");
+                }
+                else{
+                    printf("Getting colder!\n\n");
+                }
+
+                prevGuess = guessedNum;
+
+            } while (guesses < 10 && guessedNum != actualNum);
+
+            if (guesses >= 10 && guessedNum != actualNum){
+                printf("\n\nYou ran out of turns!\n\n");
+            }
+
+        }
+
+        roundOverFlag = 1;
+
+        strcpy(nameSwapVar, tempPlayer1_Name);
+        strcpy(tempPlayer1_Name, tempPlayer2_Name);
+        strcpy(tempPlayer2_Name, nameSwapVar);
+
+    } while (numRounds != 2);
+
+    if (player1_winFlag == 0 && player2_winFlag == 0){
+
+        printf("\nGame Report:\n"
+               "Both players were unable to guess the numbers\n");
+        printf("\nBoth players get 0 points :(\n");
+    }
+    else if (player1_winFlag == 1 && player2_winFlag == 0){
+
+        printf("\nGame Report:\n"
+               "%s guessed the number in %d turns!\n"
+               "%s was unable to guess the number\n", player1_name, player1_guesses, player2_name);
+        printf("\n%s wins Warmer-Colder and gets 3 points!\n", player1_name);
+    }
+    else if (player1_winFlag == 0 && player2_winFlag == 1){
+
+        printf("\nGame Report:\n"
+               "%s guessed the number in %d turns!\n"
+               "%s was unable to guess the number\n", player2_name, player2_guesses, player1_name);
+        printf("\n%s wins Warmer-Colder and gets 3 points!\n", player2_name);
+    }
+    else {
+
+        printf("\nGame Report:\n"
+               "%s guesses the number in %d turns!\n"
+               "%s guessed the number in %d turns!\n",
+               player1_name, player1_guesses, player2_name, player2_guesses);
+
+        if (player1_guesses == player2_guesses){
+            printf("\nBoth players took the same amount of turns\n"
+                "Both players get 1 point each!");
+        }
+        else if (player1_guesses < player2_guesses){
+            printf("\n%s took fewer turns!\n"
+                   "\n%s wins Warmer-Colder and gets 1 point\n",
+                   player1_name, player1_name);
+        }
+        else if (player1_guesses > player2_guesses){
+            printf("\n%s took fewer turns!\n"
+                   "\n%s wins Warmer-Colder and gets 1 point\n",
+                   player2_name, player2_name);
+        }      
+    }
+
 }
 
 void ticTacToe(char player1_name[], char player2_name[]){}
