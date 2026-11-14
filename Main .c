@@ -2,7 +2,9 @@
 # include <string.h>
 # include <conio.h>
 # include <stdlib.h>
- 
+# include <windows.h>
+# include <ctype.h>
+
 int pointsArr[2][50] = {0};
  
 void warmerColder(char player1_name[], char player2_name[]){
@@ -275,9 +277,332 @@ void warmerColder(char player1_name[], char player2_name[]){
 void ticTacToe(char player1_name[], char player2_name[]){}
  
  
- 
-void hangman(char player1_name[], char player2_name[]){}
- 
+
+void hangmanGallows(int wrongGuesses){
+    
+    switch (wrongGuesses)
+    {
+    case 1:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 2:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 3:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║               ┼\n"
+        "     ║               │\n"
+        "     ║               ┼\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 4:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║             ╭─┼\n"
+        "     ║             │ │\n"
+        "     ║             ╵ ┼\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 5:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║             ╭─┼─╮\n"
+        "     ║             │ │ │ \n"
+        "     ║             ╵ ┼ ╵\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 6:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║             ╭─┼─╮\n"
+        "     ║             │ │ │ \n"
+        "     ║             ╵ ┼ ╵\n"
+        "     ║              ╱\n"
+        "     ║             ╱\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    case 7:
+        printf(
+        "     ╔═══════════════╗\n"
+        "     ║               ║\n"
+        "     ║               │\n"
+        "     ║              ╭─╮\n"
+        "     ║              ╰─╯\n"
+        "     ║             ╭─┼─╮\n"
+        "     ║             │ │ │ \n"
+        "     ║             ╵ ┼ ╵\n"
+        "     ║              ╱ ╲\n"
+        "     ║             ╱   ╲\n"
+        "     ║\n"
+        "     ║\n"
+        "═════╩═════\n");
+        break;
+    default:
+        break;
+    }
+}
+
+
+void hangman(char player1_name[], char player2_name[]){
+
+    SetConsoleOutputCP(CP_UTF8);
+
+    int numRounds = 0, roundOverFlag = 0;
+    char tempPlayer1_Name[20], tempPlayer2_Name[20], nameSwapVar[20];
+    int player1_livesLost = 0, player2_livesLost = 0;
+    int player1_winFlag = 0, player2_winFlag = 0;
+
+    printf("\n\n\n");
+    printf("\t\t\t\t\033[1;38;5;231mWelcome to the hangman game!\033[0m\n");
+
+    strcpy(tempPlayer1_Name, player1_name);
+    strcpy(tempPlayer2_Name, player2_name);
+
+    do {
+        numRounds += 1;
+        char actualWord[20], hiddenWord[40] = {0};
+        int numberFlag = 0, livesLost = 0, foundIndex, turnNum = 1, guesses = 0;
+        char guessedLetter;
+        int guessed[26] = {0};
+
+        if (roundOverFlag == 0){
+            printf("\n\n\n\t\t\t\t\033[1;38;5;220mRound 1 begins:\033[0m\n");
+        }
+        else {
+            printf("\n\n\t\t\t\t\033[1;38;5;220mRound 2 begins:\033[0m\n");
+        }
+
+        do {
+            numberFlag = 0;
+
+            // add round number printf over here
+
+            // AI Starts here to make sure input is in small letters and no other symbol or number
+            printf("\n\n%s, please enter the word you want %s to guess: ", tempPlayer1_Name, tempPlayer2_Name);
+            int index = 0;
+            char ch;
+            
+            while (1) {
+                ch = _getch();
+                if (ch == '\r' || ch == '\n') {
+                    for (int i = 0; i < index; i++) {
+                        printf("\b \b");
+                    }
+                    break;
+                } else if (ch == '\b') {
+                    if (index > 0) {
+                        index--;
+                        printf("\b \b");
+                    }
+                } else {
+                    actualWord[index] = ch;
+                    index++;
+                    printf("%c", ch);
+                }
+            }
+            actualWord[index] = '\0';
+
+            if (actualWord[0] == '\0') {
+                numberFlag = 1;
+                printf("\nYou must enter at least one letter! Try again!\n");
+            }
+            else {
+                for (int i = 0; i < strlen(actualWord); i++){
+                    if (actualWord[i] >= 'a' && actualWord[i] <= 'z'){
+                        continue;
+                    }
+                    else {
+                        numberFlag = 1;
+                        printf("\nYou have entered an invalid word! Try again!\n");
+                        break;
+                    }
+                }
+            }
+            if (numberFlag != 1) {
+                printf("\nThe word has been noted!\n");
+            }
+        } while (numberFlag == 1);
+
+        // AI ends here
+
+        for (int i = 0 ; i < strlen(actualWord) ; i++) {
+            strcat(hiddenWord, "_");
+        }
+
+        do {
+            printf("\n\n%s, the word you have to guess is: %s (%d)", tempPlayer2_Name, hiddenWord, (int)strlen(hiddenWord));
+            printf("\nTurn number: %d , Used lives: (%d/7)\n", turnNum, livesLost);
+            printf("Guess a letter: ");
+            scanf(" %c", &guessedLetter);
+
+            guessedLetter = tolower((unsigned char)guessedLetter);
+
+            if (guessedLetter < 'a' || guessedLetter > 'z') {
+                printf("\nInvalid input! Please enter a letter!\n");
+                continue;
+            }
+
+            int letterIndex = guessedLetter - 'a';
+
+            if (letterIndex >= 0 && letterIndex < 26 && guessed[letterIndex] == 1) {
+                printf("\nYou already tried '%c'!\n", guessedLetter);
+                continue;
+            }
+
+            if (letterIndex >= 0 && letterIndex < 26) {
+                guessed[letterIndex] = 1;
+            }
+
+            turnNum += 1;
+            char *pos = strchr(actualWord, guessedLetter);
+
+            if (pos != NULL) {
+                printf("Nice guess! The letter '%c' was present!", guessedLetter);
+                while (pos != NULL) {
+                    foundIndex = pos - actualWord;
+                    hiddenWord[foundIndex] = guessedLetter;
+                    pos = strchr(pos + 1, guessedLetter);
+                }
+            }
+            else {
+                livesLost += 1;
+                printf("Whoops! The letter '%c' wasnt present!\n\n", guessedLetter);
+                hangmanGallows(livesLost);
+            }
+
+    
+        } while (livesLost < 7 && strcmp(actualWord, hiddenWord) != 0);
+
+
+
+        if (strcmp(actualWord, hiddenWord) == 0) {
+
+            printf("\n\nYou got it! The word was \"%s\"", actualWord);
+            printf("\nIt took you %d turns, and you lost %d lives in the process\n", turnNum-1, livesLost);
+
+            if (roundOverFlag == 0){
+                player2_livesLost = livesLost;
+                player2_winFlag = 1;
+            }
+            else {
+                player1_livesLost = livesLost;
+                player1_winFlag = 1;
+            }
+        }
+        else {
+            printf("\n\nYou ran out of lives! The word was \"%s\"", actualWord);
+            printf("\nIt took you %d turns, but you lost all 7 of your lives\n", turnNum-1);
+        }
+
+        roundOverFlag = 1;
+
+        strcpy(nameSwapVar, tempPlayer1_Name);
+        strcpy(tempPlayer1_Name, tempPlayer2_Name);
+        strcpy(tempPlayer2_Name, nameSwapVar);
+
+    } while (numRounds != 2);
+
+    if (player1_winFlag == 0 && player2_winFlag == 0){
+
+        printf("\n\n\t\t\t\t\t    \033[1;38;5;220mGame Report:\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220mBoth players were unable to guess the words\033[0m\n");
+        printf("\n\t\t\t\t\033[1;38;5;203mBoth players get 0 points :(\033[0m\n");
+    }
+    else if (player1_winFlag == 1 && player2_winFlag == 0){
+
+        printf("\n\n\t\t\t\t\t    \033[1;38;5;220mGame Report:\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s was unable to guess the word\033[0m\n", player1_name, player1_livesLost, player2_name);
+        printf("\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 3 points!\033[0m\n", player1_name);
+    }
+    else if (player1_winFlag == 0 && player2_winFlag == 1){
+
+        printf("\n\n\t\t\t\t\t    \033[1;38;5;220mGame Report:\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s was unable to guess the word\033[0m\n", player2_name, player2_livesLost, player1_name);
+        printf("\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 3 points!\033[0m\n", player2_name);
+    }
+    else {
+
+        printf("\n\n\t\t\t\t\t    \033[1;38;5;220mGame Report:\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n"
+               "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n",
+               player1_name, player1_livesLost, player2_name, player2_livesLost);
+
+        if (player1_livesLost == player2_livesLost){
+            printf("\n\t\t\t\t\033[1;38;5;220mBoth players lost the same amount of lives\033[0m\n"
+                "\t\t\t\t\033[1;38;5;220mBoth players get 1 point each!\033[0m");
+        }
+        else if (player1_livesLost < player2_livesLost){
+            printf("\n\t\t\t\t\033[1;38;5;220m%s lost fewer lives!\033[0m"
+                   "\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point\033[0m\n",
+                   player1_name, player1_name);
+        }
+        else if (player1_livesLost > player2_livesLost){
+            printf("\n\t\t\t\t\033[1;38;5;220m%s lost fewer lives!\033[0m"
+                   "\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point\033[0m\n",
+                   player2_name, player2_name);
+        }      
+    }
+}
+
  
  
  
@@ -446,7 +771,7 @@ int main(){
                 } while (menuChoice != 'a' && menuChoice != 'm');
  
                 if (menuChoice == 'a'){
-                    warmerColder(player1_name, player2_name);
+                    hangman(player1_name, player2_name);
                 }
                 else {
  
@@ -478,7 +803,7 @@ int main(){
                 } while (menuChoice != 'a' && menuChoice != 'm');
  
                 if (menuChoice == 'a'){
-                    warmerColder(player1_name, player2_name);
+                    ticTacToe(player1_name, player2_name);
                 }
                 else {
  
