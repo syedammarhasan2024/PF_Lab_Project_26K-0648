@@ -284,115 +284,115 @@ void hangmanGallows(int wrongGuesses){
     {
     case 1:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 2:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 3:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║               ┼\n"
-        "     ║               │\n"
-        "     ║               ┼\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m               ┼\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m               ┼\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 4:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║             ╭─┼\n"
-        "     ║             │ │\n"
-        "     ║             ╵ ┼\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╭─┼\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             │ │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╵ ┼\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 5:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║             ╭─┼─╮\n"
-        "     ║             │ │ │ \n"
-        "     ║             ╵ ┼ ╵\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╭─┼─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             │ │ │ \033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╵ ┼ ╵\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 6:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║             ╭─┼─╮\n"
-        "     ║             │ │ │ \n"
-        "     ║             ╵ ┼ ╵\n"
-        "     ║              ╱\n"
-        "     ║             ╱\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╭─┼─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             │ │ │ \033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╵ ┼ ╵\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╱\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╱\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     case 7:
         printf(
-        "     ╔═══════════════╗\n"
-        "     ║               ║\n"
-        "     ║               │\n"
-        "     ║              ╭─╮\n"
-        "     ║              ╰─╯\n"
-        "     ║             ╭─┼─╮\n"
-        "     ║             │ │ │ \n"
-        "     ║             ╵ ┼ ╵\n"
-        "     ║              ╱ ╲\n"
-        "     ║             ╱   ╲\n"
-        "     ║\n"
-        "     ║\n"
-        "═════╩═════\n");
+        "\t\t\t\t\t     \033[1;38;5;75m╔═══════════════╗\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               ║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║               │\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╭─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╰─╯\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╭─┼─╮\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             │ │ │ \033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╵ ┼ ╵\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m              ╱ ╲\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[1;38;5;203m             ╱   ╲\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t     \033[1;38;5;75m║\033[0m\n"
+        "\t\t\t\t\t\033[1;38;5;75m═════╩═════\033[0m\n");
         break;
     default:
         break;
@@ -418,7 +418,7 @@ void hangman(char player1_name[], char player2_name[]){
     do {
         numRounds += 1;
         char actualWord[20], hiddenWord[40] = {0};
-        int numberFlag = 0, livesLost = 0, foundIndex, turnNum = 1, guesses = 0;
+        int numberFlag = 0, livesLost = 0, foundIndex, turnNum = 1;
         char guessedLetter;
         int guessed[26] = {0};
 
@@ -435,7 +435,7 @@ void hangman(char player1_name[], char player2_name[]){
             // add round number printf over here
 
             // AI Starts here to make sure input is in small letters and no other symbol or number
-            printf("\n\n%s, please enter the word you want %s to guess: ", tempPlayer1_Name, tempPlayer2_Name);
+            printf("\n\n\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m, please enter the word you want \033[1;38;5;231m%s\033[1;38;5;159m to guess: \033[0m", tempPlayer1_Name, tempPlayer2_Name);
             int index = 0;
             char ch;
             
@@ -461,7 +461,7 @@ void hangman(char player1_name[], char player2_name[]){
 
             if (actualWord[0] == '\0') {
                 numberFlag = 1;
-                printf("\nYou must enter at least one letter! Try again!\n");
+                printf("\n\t\t\t\t\033[1;38;5;203mYou must enter at least one letter! Try again!\033[0m\n");
             }
             else {
                 for (int i = 0; i < strlen(actualWord); i++){
@@ -470,13 +470,13 @@ void hangman(char player1_name[], char player2_name[]){
                     }
                     else {
                         numberFlag = 1;
-                        printf("\nYou have entered an invalid word! Try again!\n");
+                        printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid word! Try again!\033[0m\n");
                         break;
                     }
                 }
             }
             if (numberFlag != 1) {
-                printf("\nThe word has been noted!\n");
+                printf("\n\t\t\t\t\033[1;38;5;42mThe word has been noted!\033[0m\n");
             }
         } while (numberFlag == 1);
 
@@ -487,22 +487,22 @@ void hangman(char player1_name[], char player2_name[]){
         }
 
         do {
-            printf("\n\n%s, the word you have to guess is: %s (%d)", tempPlayer2_Name, hiddenWord, (int)strlen(hiddenWord));
-            printf("\nTurn number: %d , Used lives: (%d/7)\n", turnNum, livesLost);
-            printf("Guess a letter: ");
-            scanf(" %c", &guessedLetter);
+            printf("\n\n\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m, the word you have to guess is: \033[1;38;5;231m%s (%d)\033[0m", tempPlayer2_Name, hiddenWord, (int)strlen(hiddenWord));
+            printf("\n\t\t\t\t\033[1;38;5;231mTurn number: %d , Used lives: (%d/7)\033[0m\n", turnNum, livesLost);
+            printf("\t\t\t\t\033[1;38;5;159mGuess a letter: \033[0m");
+            guessedLetter = _getch();
 
             guessedLetter = tolower((unsigned char)guessedLetter);
 
             if (guessedLetter < 'a' || guessedLetter > 'z') {
-                printf("\nInvalid input! Please enter a letter!\n");
+                printf("\n\t\t\t\t\033[1;38;5;203mInvalid input! Please enter a letter!\033[0m\n");
                 continue;
             }
 
             int letterIndex = guessedLetter - 'a';
 
             if (letterIndex >= 0 && letterIndex < 26 && guessed[letterIndex] == 1) {
-                printf("\nYou already tried '%c'!\n", guessedLetter);
+                printf("\n\t\t\t\t\033[1;38;5;203mYou already tried '%c'!\033[0m\n", guessedLetter);
                 continue;
             }
 
@@ -514,7 +514,7 @@ void hangman(char player1_name[], char player2_name[]){
             char *pos = strchr(actualWord, guessedLetter);
 
             if (pos != NULL) {
-                printf("Nice guess! The letter '%c' was present!", guessedLetter);
+                printf("\n\t\t\t\t\033[1;38;5;42mNice guess! The letter '%c' was present!\033[0m", guessedLetter);
                 while (pos != NULL) {
                     foundIndex = pos - actualWord;
                     hiddenWord[foundIndex] = guessedLetter;
@@ -523,7 +523,7 @@ void hangman(char player1_name[], char player2_name[]){
             }
             else {
                 livesLost += 1;
-                printf("Whoops! The letter '%c' wasnt present!\n\n", guessedLetter);
+                printf("\n\t\t\t\t\033[1;38;5;203mWhoops! The letter '%c' wasnt present!\033[0m\n\n", guessedLetter);
                 hangmanGallows(livesLost);
             }
 
@@ -534,8 +534,8 @@ void hangman(char player1_name[], char player2_name[]){
 
         if (strcmp(actualWord, hiddenWord) == 0) {
 
-            printf("\n\nYou got it! The word was \"%s\"", actualWord);
-            printf("\nIt took you %d turns, and you lost %d lives in the process\n", turnNum-1, livesLost);
+            printf("\n\n\t\t\t\t\033[1;38;5;198mYou got it! The word was \"%s\"\033[0m", actualWord);
+            printf("\n\t\t\t\t\033[1;38;5;198mIt took you %d turns, and you lost %d lives in the process\033[0m\n", turnNum-1, livesLost);
 
             if (roundOverFlag == 0){
                 player2_livesLost = livesLost;
@@ -547,8 +547,8 @@ void hangman(char player1_name[], char player2_name[]){
             }
         }
         else {
-            printf("\n\nYou ran out of lives! The word was \"%s\"", actualWord);
-            printf("\nIt took you %d turns, but you lost all 7 of your lives\n", turnNum-1);
+            printf("\n\n\t\t\t\t\033[1;38;5;203mYou ran out of lives! The word was \"%s\"\033[0m", actualWord);
+            printf("\n\t\t\t\t\033[1;38;5;203mIt took you %d turns, but you lost all 7 of your lives\033[0m\n", turnNum-1);
         }
 
         roundOverFlag = 1;
@@ -724,19 +724,19 @@ int main(){
                 "\t\t\t\t     \033[1;38;5;159mRock-Paper-Scissors \033[1;38;5;231m(r)\033[0m\n"
                 "\t\t\t\t       \033[1;38;5;203mTo exit the game \033[1;38;5;231m(e)\033[0m\n\n");
             printf("\t\t\t\t  \033[1;38;5;231mEnter your game of choice: \033[0m");
-            scanf(" %c", &gamechoice);
+            gamechoice = _getch();
             printf("\n");
  
-            if (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e'){
+            if (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E'){
                 printf("\t\t\t\033[1;38;5;203m You have entered an invalid choice, please try again! \033[0m");
                 printf("\n\n");
                 printf("\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m");
                 printf("\n\n\n\n");
             }
  
-        } while (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e');
+        } while (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E');
  
-        if (gamechoice == 'e'){
+        if (gamechoice == 'e' || gamechoice == 'E'){
  
             printf("\n\n\t\t\t\t\t\033[1;38;5;203mGame exited :(\033[0m\n\n");
  
@@ -752,7 +752,7 @@ int main(){
         printf("\t\t\t       \033[1;38;5;42mPlayer 2's name has been saved as: \033[1;38;5;231m%s\033[0m", player2_name);
         printf("\n");
  
-        if (gamechoice == 'h'){
+        if (gamechoice == 'h' || gamechoice == 'H'){
  
             hangman(player1_name, player2_name);
  
@@ -784,7 +784,7 @@ int main(){
  
         }
  
-        else if (gamechoice == 't'){
+        else if (gamechoice == 't' || gamechoice == 'T'){
  
             ticTacToe(player1_name, player2_name);
  
@@ -816,7 +816,7 @@ int main(){
  
         }
  
-        else if (gamechoice == 'w'){
+        else if (gamechoice == 'w' || gamechoice == 'W'){
  
             warmerColder(player1_name, player2_name);
  
@@ -848,7 +848,7 @@ int main(){
  
         }
  
-        else if (gamechoice == 'r'){
+        else if (gamechoice == 'r' || gamechoice == 'R'){
  
             rockPaperScissors(player1_name, player2_name);
  
@@ -860,13 +860,13 @@ int main(){
                         "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
                     menuChoice = _getch();
  
-                    if (menuChoice != 'a' && menuChoice != 'm'){
+                    if (menuChoice != 'a' && menuChoice != 'm' && menuChoice != 'A' && menuChoice != 'M'){
                         printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
                     }
  
-                } while (menuChoice != 'a' && menuChoice != 'm');
+                } while (menuChoice != 'a' && menuChoice != 'm' && menuChoice != 'A' && menuChoice != 'M');
  
-                if (menuChoice == 'a'){
+                if (menuChoice == 'a' || menuChoice == 'A'){
                     rockPaperScissors(player1_name, player2_name);
                 }
                 else {
@@ -876,9 +876,9 @@ int main(){
                     continue;
                 }
  
-            } while (menuChoice == 'a');
+            } while (menuChoice == 'a' || menuChoice == 'A');
  
         }
  
-    } while (gamechoice != 'e');
+    } while (gamechoice != 'e' || gamechoice != 'E');
 }
