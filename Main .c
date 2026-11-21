@@ -1,3 +1,4 @@
+
 # include <stdio.h>
 # include <string.h>
 # include <conio.h>
@@ -7,6 +8,8 @@
 # include <ctype.h>
 
 int pointsArr[2][50] = {0};
+int gameIndex = 0;
+int gameTypeArr[50] = {0};
  
 void warmerColder(char player1_name[], char player2_name[]){
  
@@ -64,10 +67,10 @@ void warmerColder(char player1_name[], char player2_name[]){
         guesses = 0;
  
         if (roundOverFlag == 0){
-            printf("\n\n\n\t\t\t\t\033[1;38;5;220mRound 1 begins:\033[0m\n");
+            printf("\n\n\n\t\t\t\t\t\033[1;38;5;220mRound 1 begins:\033[0m\n");
         }
         else {
-            printf("\n\n\t\t\t\t\033[1;38;5;220mRound 2 begins:\033[0m\n");
+            printf("\n\n\t\t\t\t\t\033[1;38;5;220mRound 2 begins:\033[0m\n");
         }
  
         // AI start
@@ -242,6 +245,7 @@ void warmerColder(char player1_name[], char player2_name[]){
                "\t\t\t\t\033[1;38;5;220m%s guessed the number in %d turns!\033[0m\n"
                "\t\t\t\t\033[1;38;5;220m%s was unable to guess the number\033[0m\n", player1_name, player1_guesses, player2_name);
         printf("\n\t\t\t\t\033[1;38;5;220m%s wins Warmer-Colder and gets 1 point!\033[0m\n", player1_name);
+        pointsArr[0][gameIndex] += 1;
     }
     else if (player1_winFlag == 0 && player2_winFlag == 1){
  
@@ -249,6 +253,7 @@ void warmerColder(char player1_name[], char player2_name[]){
                "\t\t\t\t\033[1;38;5;220m%s guessed the number in %d turns!\033[0m\n"
                "\t\t\t\t\033[1;38;5;220m%s was unable to guess the number\033[0m\n", player2_name, player2_guesses, player1_name);
         printf("\n\t\t\t\t\033[1;38;5;220m%s wins Warmer-Colder and gets 1 point!\033[0m\n", player2_name);
+        pointsArr[1][gameIndex] += 1;
     }
     else {
  
@@ -260,17 +265,26 @@ void warmerColder(char player1_name[], char player2_name[]){
         if (player1_guesses == player2_guesses){
             printf("\n\t\t\t\t\033[1;38;5;220mBoth players took the same amount of turns\033[0m\n"
                 "\t\t\t\t\033[1;38;5;220mBoth players get 1 point each!\033[0m");
+            pointsArr[0][gameIndex] += 1;
+            pointsArr[1][gameIndex] += 1;
         }
         else if (player1_guesses < player2_guesses){
             printf("\n\t\t\t\t\033[1;38;5;220m%s took fewer turns!\033[0m"
                    "\n\t\t\t\t\033[1;38;5;220m%s wins Warmer-Colder and gets 1 point\033[0m\n",
                    player1_name, player1_name);
+            pointsArr[0][gameIndex] += 1;
         }
         else if (player1_guesses > player2_guesses){
             printf("\n\t\t\t\t\033[1;38;5;220m%s took fewer turns!\033[0m"
                    "\n\t\t\t\t\033[1;38;5;220m%s wins Warmer-Colder and gets 1 point\033[0m\n",
                    player2_name, player2_name);
+            pointsArr[1][gameIndex] += 1;
         }      
+    }
+
+    gameTypeArr[gameIndex] = 3;
+    if (gameIndex < 49){
+        gameIndex += 1;
     }
  
 }
@@ -405,6 +419,12 @@ void ticTacToe(char player1_name[], char player2_name[]){
                                 board[2][0], board[2][1], board[2][2]);
                             printf("\n\t\t\t\t\033[1;38;5;220m%s is the winner!\033[0m\n\n", winnerName);
                             printf("\t\t\t\t\033[1;38;5;220m%s wins Tic Tac Toe and gets 1 point!\033[0m\n", winnerName);
+                            if (p1Char == p1Chartemp){
+                                pointsArr[0][gameIndex] += 1;
+                            }
+                            else {
+                                pointsArr[1][gameIndex] += 1;
+                            }
                             break;
                         }
 
@@ -444,6 +464,11 @@ void ticTacToe(char player1_name[], char player2_name[]){
 
         printf("\n\t\t\t\t\033[1;38;5;231mIt's a tie! GG both of you!\033[0m\n\n");
         printf("\t\t\t\t\033[1;38;5;203mBoth players get 0 points :(\033[0m\n");
+    }
+
+    gameTypeArr[gameIndex] = 2;
+    if (gameIndex < 49){
+        gameIndex += 1;
     }
 }
  
@@ -581,7 +606,7 @@ void hangman(char player1_name[], char player2_name[]){
     int player1_winFlag = 0, player2_winFlag = 0;
 
     printf("\n\n\n");
-    printf("\t\t\t\t\033[1;38;5;231mWelcome to the hangman game!\033[0m\n");
+    printf("\t\t\t\t\t\033[1;38;5;231mWelcome to the hangman game!\033[0m\n");
 
     strcpy(tempPlayer1_Name, player1_name);
     strcpy(tempPlayer2_Name, player2_name);
@@ -594,10 +619,10 @@ void hangman(char player1_name[], char player2_name[]){
         int guessed[26] = {0};
 
         if (roundOverFlag == 0){
-            printf("\n\n\n\t\t\t\t\033[1;38;5;220mRound 1 begins:\033[0m\n");
+            printf("\n\n\t\t\t\t\t\t\033[1;38;5;220mRound 1 begins:\033[0m\n");
         }
         else {
-            printf("\n\n\t\t\t\t\033[1;38;5;220mRound 2 begins:\033[0m\n");
+            printf("\n\n\t\t\t\t\t\033[1;38;5;220mRound 2 begins:\033[0m\n");
         }
 
         do {
@@ -742,6 +767,7 @@ void hangman(char player1_name[], char player2_name[]){
                "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n"
                "\t\t\t\t\033[1;38;5;220m%s was unable to guess the word\033[0m\n", player1_name, player1_livesLost, player2_name);
         printf("\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point!\033[0m\n", player1_name);
+        pointsArr[0][gameIndex] += 1;
     }
     else if (player1_winFlag == 0 && player2_winFlag == 1){
 
@@ -749,6 +775,7 @@ void hangman(char player1_name[], char player2_name[]){
                "\t\t\t\t\033[1;38;5;220m%s guessed the word with %d lives lost!\033[0m\n"
                "\t\t\t\t\033[1;38;5;220m%s was unable to guess the word\033[0m\n", player2_name, player2_livesLost, player1_name);
         printf("\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point!\033[0m\n", player2_name);
+        pointsArr[1][gameIndex] += 1;
     }
     else {
 
@@ -760,17 +787,26 @@ void hangman(char player1_name[], char player2_name[]){
         if (player1_livesLost == player2_livesLost){
             printf("\n\t\t\t\t\033[1;38;5;220mBoth players lost the same amount of lives\033[0m\n"
                 "\t\t\t\t\033[1;38;5;220mBoth players get 1 point each!\033[0m");
+            pointsArr[0][gameIndex] += 1;
+            pointsArr[1][gameIndex] += 1;
         }
         else if (player1_livesLost < player2_livesLost){
             printf("\n\t\t\t\t\033[1;38;5;220m%s lost fewer lives!\033[0m"
                    "\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point\033[0m\n",
                    player1_name, player1_name);
+            pointsArr[0][gameIndex] += 1;
         }
         else if (player1_livesLost > player2_livesLost){
             printf("\n\t\t\t\t\033[1;38;5;220m%s lost fewer lives!\033[0m"
                    "\n\t\t\t\t\033[1;38;5;220m%s wins Hangman and gets 1 point\033[0m\n",
                    player2_name, player2_name);
+            pointsArr[1][gameIndex] += 1;
         }      
+    }
+
+    gameTypeArr[gameIndex] = 1;
+    if (gameIndex < 49){
+        gameIndex += 1;
     }
 }
 
@@ -792,84 +828,140 @@ int rockPaperScissors_WinChecker(char player1_move, char player2_move){
  
 void rockPaperScissors(char player1_name[], char player2_name[]){
  
-    int numGames, gamesCount = 0;
     char player1_move, player2_move;
-    int winner, player1_rock_paper_scissors_points = 0, player2_rock_paper_scissors_points = 0;
+    int winner;
  
     printf("\n\n\n");
     printf("\t\t\t\t\033[1;38;5;231mWelcome to the rock paper scissors game!\033[0m\n");
-    printf("\t\t\t\t\033[1;38;5;159mEnter how many games you want to play: \033[0m");
-    numGames = _getche() - '0';
+    printf("\n");
  
     do {
- 
-        printf("\n\n\t\t\t\t\033[1;38;5;220mGame %d:\033[0m\n\n", gamesCount + 1);
- 
-        do {
-            printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player1_name);
-            printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
-            player1_move = _getch();
-            if (player1_move != 'r' && player1_move != 'p' && player1_move != 's'){
-                printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player1_name);
-            }
-            else {
-                printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n\n", player1_name);
-            }
-        }   while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
- 
-        do {
-            printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player2_name);
-            printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
-            player2_move = _getch();
-            if (player2_move != 'r' && player2_move != 'p' && player2_move != 's'){
-                printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player2_name);
-            }
-            else {
-                printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n", player2_name);
-            }
-        } while (player2_move != 'r' && player2_move != 'p' && player2_move != 's');
- 
-        winner = rockPaperScissors_WinChecker(player1_move, player2_move);
- 
-        if (winner == 0){
-            printf("\n\t\t\t\t\033[1;38;5;231mBoth %s and %s chose (%c)\033[0m\n", player1_name, player2_name, player1_move);
-            printf("\t\t\t\t\033[1;38;5;231mThis makes it a tie! Try again!\033[0m");
-        }
-        else if (winner == 1){
-            printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
-            printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player1_name);
-            gamesCount += 1;
-            player1_rock_paper_scissors_points += 1;
+        printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player1_name);
+        printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
+        player1_move = _getch();
+        if (player1_move != 'r' && player1_move != 'p' && player1_move != 's'){
+            printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player1_name);
         }
         else {
-            printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
-            printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player2_name);
-            gamesCount += 1;
-            player2_rock_paper_scissors_points += 1;
+            printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n\n", player1_name);
         }
-    
-    } while (gamesCount < numGames);
+    }   while (player1_move != 'r' && player1_move != 'p' && player1_move != 's');
  
-    printf("\n\n\n\t\t\t\t\t\033[1;38;5;220m    Final Score: \033[0m\n"
-           "\t\t\t\t\t    \033[1;38;5;220m%s ==> %d wins\033[0m\n"
-           "\t\t\t\t\t    \033[1;38;5;220m%s ==> %d wins\033[0m\n",
-           player1_name, player1_rock_paper_scissors_points, player2_name, player2_rock_paper_scissors_points);
-        
-    if (player1_rock_paper_scissors_points == player2_rock_paper_scissors_points){
-        printf("\n\n\t\t\t\t\033[1;38;5;220mTHE SCORES ARE TIED, SO BOTH PLAYERS EARN 1 POINT\033[0m");
-        //add points to array
+    do {
+        printf("\t\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m's turn: \033[0m\n", player2_name);
+        printf("\t\t\t\t\033[1;38;5;159mChoose rock \033[1;38;5;231m(r)\033[1;38;5;159m, paper \033[1;38;5;231m(p)\033[1;38;5;159m, or scissors \033[1;38;5;231m(s)\033[1;38;5;159m: \033[0m");
+        player2_move = _getch();
+        if (player2_move != 'r' && player2_move != 'p' && player2_move != 's'){
+            printf("\n\t\t\t\t\033[1;38;5;203mYour entry was invalid, please try again, %s\033[0m\n\n", player2_name);
+        }
+        else {
+            printf("\n\t\t\t\t\033[1;38;5;42m%s's move has been noted!\033[0m\n", player2_name);
+        }
+    } while (player2_move != 'r' && player2_move != 'p' && player2_move != 's');
+ 
+    winner = rockPaperScissors_WinChecker(player1_move, player2_move);
+ 
+    if (winner == 0){
+        printf("\n\t\t\t\t\033[1;38;5;231mBoth %s and %s chose (%c)\033[0m\n", player1_name, player2_name, player1_move);
+        printf("\t\t\t\t\033[1;38;5;231mThis makes it a tie! Try again!\033[0m");
+        printf("\n\n\t\t\t\t\033[1;38;5;203mBoth players get 0 points :(\033[0m\n");
     }
-    else if (player1_rock_paper_scissors_points > player2_rock_paper_scissors_points){
+    else if (winner == 1){
         char temp_name[20]; 
         strcpy(temp_name, player1_name);
+        printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
+        printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player1_name);
         printf("\n\n\t\t\t\t\033[1;38;5;220m%s WINS ROCK PAPER SCISSORS AND EARNS 1 POINT!\033[0m\n", strupr(temp_name));
         //add points to array
+        pointsArr[0][gameIndex] += 1;
     }
     else {
         char temp_name[20]; 
         strcpy(temp_name, player2_name);
+        printf("\n\t\t\t\t\033[1;38;5;198m%s chose (%c) while %s chose (%c)\033[0m\n", player1_name, player1_move, player2_name, player2_move);
+        printf("\t\t\t\t\033[1;38;5;198m%s won this round!\033[0m", player2_name);
         printf("\n\n\t\t\t\t\033[1;38;5;220m%s WINS ROCK PAPER SCISSORS AND EARNS 1 POINT!\033[0m\n", strupr(temp_name));
         //add points to array
+        pointsArr[1][gameIndex] += 1;
+    }
+
+    gameTypeArr[gameIndex] = 4;
+    if (gameIndex < 49){
+        gameIndex += 1;
+    }
+}
+ 
+ 
+
+// I used AI a little bit but the logic and idea was mine, I just used AI to skip the long tedious coding
+
+void leaderboard(char player1_name[], char player2_name[]){
+
+    SetConsoleOutputCP(CP_UTF8);
+
+    char gameNames[5][20] = {"Hangman", "Tic-Tac-Toe", "Warmer Colder", "Rock-Paper-Scissors", "Overall"};
+    int gamesPlayed[5] = {0}, gamesTied[5] = {0};
+    int player1_wins[5] = {0}, player2_wins[5] = {0};
+    int player1_points[5] = {0}, player2_points[5] = {0};
+    int gameType;
+
+    for (int i = 0; i < 50; i++){
+        if (gameTypeArr[i] != 0){
+            gameType = gameTypeArr[i] - 1;
+
+            gamesPlayed[gameType] += 1;
+            gamesPlayed[4] += 1;
+            player1_points[gameType] += pointsArr[0][i];
+            player1_points[4] += pointsArr[0][i];
+            player2_points[gameType] += pointsArr[1][i];
+            player2_points[4] += pointsArr[1][i];
+
+            if (pointsArr[0][i] > pointsArr[1][i]){
+                player1_wins[gameType] += 1;
+                player1_wins[4] += 1;
+            }
+            else if (pointsArr[0][i] < pointsArr[1][i]){
+                player2_wins[gameType] += 1;
+                player2_wins[4] += 1;
+            }
+            else {
+                gamesTied[gameType] += 1;
+                gamesTied[4] += 1;
+            }
+        }
+    }
+
+    printf("\n\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[1;38;5;220m Leaderboard \033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m\n");
+    printf("\n");
+
+    if (gamesPlayed[4] == 0){
+        printf("\t\t\t\t     \033[1;38;5;231mNo games have been played yet!\033[0m\n");
+    }
+    else {
+        printf("\t \033[1;38;5;220m%-21s%-20s%-9s%-8s%-8s%-8s%-8s\033[0m\n", "Game", "Player", "Played", "Won", "Lost", "Tied", "Points");
+        printf("\t \033[1;38;5;75m════════════════════════════════════════════════════════════════════════════════\033[0m\n");
+
+        for (int i = 0; i < 5; i++){
+            printf("\t \033[1;38;5;159m%-21s\033[1;38;5;231m%-20s\033[1;38;5;231m%-9d\033[1;38;5;42m%-8d\033[1;38;5;203m%-8d\033[1;38;5;75m%-8d\033[1;38;5;220m%-8d\033[0m\n", gameNames[i], player1_name, gamesPlayed[i], player1_wins[i], player2_wins[i], gamesTied[i], player1_points[i]);
+            printf("\t \033[1;38;5;159m%-21s\033[1;38;5;231m%-20s\033[1;38;5;231m%-9d\033[1;38;5;42m%-8d\033[1;38;5;203m%-8d\033[1;38;5;75m%-8d\033[1;38;5;220m%-8d\033[0m\n", "", player2_name, gamesPlayed[i], player2_wins[i], player1_wins[i], gamesTied[i], player2_points[i]);
+
+            if (i < 3){
+                printf("\t \033[1;38;5;75m────────────────────────────────────────────────────────────────────────────────\033[0m\n");
+            }
+            else {
+                printf("\t \033[1;38;5;75m════════════════════════════════════════════════════════════════════════════════\033[0m\n");
+            }
+        }
+
+        if (player1_points[4] > player2_points[4]){
+            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player1_name, player1_points[4]);
+        }
+        else if (player2_points[4] > player1_points[4]){
+            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player2_name, player2_points[4]);
+        }
+        else {
+            printf("\n\t\t\t\t\033[1;38;5;220mBoth players are tied on %d points!\033[0m\n", player1_points[4]);
+        }
     }
 }
  
@@ -877,35 +969,43 @@ void rockPaperScissors(char player1_name[], char player2_name[]){
  
 int main(){
  
+    char menuChoice;
+    char player1_name[20], player2_name[20];
     char gamechoice = 'z';
- 
+
+    printf("\n\n\t\t\t\t            \033[1;38;5;220mPlayer Setup:\033[0m\n\n");
+    printf("\t\t\t       \033[1;38;5;159mPlayer 1 ... please enter your name: \033[0m");
+    scanf("%s", player1_name);
+    printf("\t\t\t       \033[1;38;5;42mPlayer 1's name has been saved as: \033[1;38;5;231m%s\033[0m\n", player1_name);
+    printf("\n\t\t\t       \033[1;38;5;159mPlayer 2 ... please enter your name: \033[0m");
+    scanf("%s", player2_name);
+    printf("\t\t\t       \033[1;38;5;42mPlayer 2's name has been saved as: \033[1;38;5;231m%s\033[0m\n\n", player2_name);
+
     do {
-        char menuChoice;
-        char player1_name[20], player2_name[20];
- 
+
         // Keep the terminal window at 106x32 for best viewing experience
+        printf("\n\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[1;38;5;220m Welcome to Ammar's Gaming Arcade! \033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m\n");
+        printf("\n");
+        printf("\t\t\t\t \033[1;38;5;231mWhat game would you like to play?\033[0m\n"
+            "\n"
+            "\t\t\t\t          \033[1;38;5;159mHangman \033[1;38;5;231m(h)\033[0m\n"
+            "\t\t\t\t         \033[1;38;5;159mTic-Tac-Toe \033[1;38;5;231m(t)\033[0m\n"
+            "\t\t\t\t        \033[1;38;5;159mWarmer Colder \033[1;38;5;231m(w)\033[0m\n"
+            "\t\t\t\t     \033[1;38;5;159mRock-Paper-Scissors \033[1;38;5;231m(r)\033[0m\n"
+            "\t\t\t\t         \033[1;38;5;159mLeaderboard \033[1;38;5;231m(l)\033[0m\n"
+            "\t\t\t\t       \033[1;38;5;203mTo exit the game \033[1;38;5;231m(e)\033[0m\n\n");
+
         do {    
-            printf("\n\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[1;38;5;220m Welcome to Ammar's Gaming Arcade! \033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m\n");
-            printf("\n");
-            printf("\t\t\t\t \033[1;38;5;231mWhat game would you like to play?\033[0m\n"
-                "\n"
-                "\t\t\t\t          \033[1;38;5;159mHangman \033[1;38;5;231m(h)\033[0m\n"
-                "\t\t\t\t         \033[1;38;5;159mTic-Tac-Toe \033[1;38;5;231m(t)\033[0m\n"
-                "\t\t\t\t        \033[1;38;5;159mWarmer Colder \033[1;38;5;231m(w)\033[0m\n"
-                "\t\t\t\t     \033[1;38;5;159mRock-Paper-Scissors \033[1;38;5;231m(r)\033[0m\n"
-                "\t\t\t\t       \033[1;38;5;203mTo exit the game \033[1;38;5;231m(e)\033[0m\n\n");
             printf("\t\t\t\t  \033[1;38;5;231mEnter your game of choice: \033[0m");
             gamechoice = _getche();
-            printf("\n\n");
+            printf("\n");
  
-            if (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E'){
+            if (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E' && gamechoice != 'l' && gamechoice != 'L'){
                 printf("\t\t\t\033[1;38;5;203m You have entered an invalid choice, please try again! \033[0m");
                 printf("\n\n");
-                printf("\033[1;38;5;75m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\033[0m");
-                printf("\n\n\n\n");
             }
  
-        } while (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E');
+        } while (gamechoice != 'h' && gamechoice != 't' && gamechoice != 'w' && gamechoice != 'r' && gamechoice != 'e' && gamechoice != 'H' && gamechoice != 'T' && gamechoice != 'W' && gamechoice != 'R' && gamechoice != 'E' && gamechoice != 'l' && gamechoice != 'L');
  
         if (gamechoice == 'e' || gamechoice == 'E'){
  
@@ -914,14 +1014,6 @@ int main(){
             break;
         }
  
-        printf("\t\t\t       \033[1;38;5;159mPlayer 1 ... please enter your name: \033[0m");
-        scanf("%s", player1_name);
-        printf("\t\t\t       \033[1;38;5;42mPlayer 1's name has been saved as: \033[1;38;5;231m%s\033[0m", player1_name);
-        printf("\n\n");
-        printf("\t\t\t       \033[1;38;5;159mPlayer 2 ... please enter your name: \033[0m");
-        scanf("%s", player2_name);
-        printf("\t\t\t       \033[1;38;5;42mPlayer 2's name has been saved as: \033[1;38;5;231m%s\033[0m", player2_name);
-        printf("\n");
  
         if (gamechoice == 'h' || gamechoice == 'H'){
  
@@ -1048,6 +1140,25 @@ int main(){
                 }
  
             } while (menuChoice == 'a' || menuChoice == 'A');
+ 
+        }
+ 
+        else if (gamechoice == 'l' || gamechoice == 'L'){
+ 
+            leaderboard(player1_name, player2_name);
+ 
+            do {
+                printf("\n\n\t\t\t\t\033[1;38;5;159mPress \033[1;38;5;231m(m)\033[1;38;5;159m to go to the main menu\033[0m\n"
+                    "\t\t\t\t\033[1;38;5;159mEnter your choice: \033[0m");
+                menuChoice = _getche();
+ 
+                if (menuChoice != 'm' && menuChoice != 'M'){
+                    printf("\n\t\t\t\t\033[1;38;5;203mYou have entered an invalid choice, try again.\033[0m\n");
+                }
+ 
+            } while (menuChoice != 'm' && menuChoice != 'M');
+ 
+            printf("\n\n\t\t\t\t\033[1;38;5;231mReturning to main menu ...\033[0m\n\n");
  
         }
  
