@@ -628,8 +628,6 @@ void hangman(char player1_name[], char player2_name[]){
         do {
             numberFlag = 0;
 
-            // add round number printf over here
-
             // AI Starts here to make sure input is in small letters and no other symbol or number
             printf("\n\n\t\t\t\033[1;38;5;231m%s\033[1;38;5;159m, please enter the word you want \033[1;38;5;231m%s\033[1;38;5;159m to guess: \033[0m", tempPlayer1_Name, tempPlayer2_Name);
             int index = 0;
@@ -654,6 +652,10 @@ void hangman(char player1_name[], char player2_name[]){
                 }
             }
             actualWord[index] = '\0';
+
+            for (int i = 0; actualWord[i] != '\0'; i++) {
+                actualWord[i] = tolower((unsigned char)actualWord[i]);
+            }
 
             if (actualWord[0] == '\0') {
                 numberFlag = 1;
