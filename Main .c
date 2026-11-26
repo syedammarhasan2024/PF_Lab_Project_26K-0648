@@ -956,10 +956,10 @@ void leaderboard(char player1_name[], char player2_name[]){
         }
 
         if (player1_points[4] > player2_points[4]){
-            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player1_name, player1_points[4]);
+            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player1_name, player1_points[4] - player2_points[4]);
         }
         else if (player2_points[4] > player1_points[4]){
-            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player2_name, player2_points[4]);
+            printf("\n\t\t\t\t\033[1;38;5;220m%s is leading with %d points!\033[0m\n", player2_name, player2_points[4] - player1_points[4]);
         }
         else {
             printf("\n\t\t\t\t\033[1;38;5;220mBoth players are tied on %d points!\033[0m\n", player1_points[4]);
